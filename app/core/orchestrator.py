@@ -8,6 +8,7 @@ from app.models.schemas import ChatResponse
 
 def orchestrate(user_id: str, user_message: str) -> ChatResponse:
     intent = classification_service.classify_intent(user_message)
+    print(f"[DEBUG] Final classified intent: {intent}")
 
     if intent == "recipe_request":
         response = recipe_service.handle_recipe(user_message)
@@ -25,7 +26,7 @@ def orchestrate(user_id: str, user_message: str) -> ChatResponse:
         response = cart_service.clear_cart(user_id)
     else:
         response = gemini_chat(
-            f"You are a helpful cooking assistant. User said: {user_message}\nReply politely."
+            f"You are a helpful cooking assistant. User said: {user_message}\n Reply politely."
         )
 
     return ChatResponse(
