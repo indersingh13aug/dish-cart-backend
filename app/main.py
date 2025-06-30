@@ -22,5 +22,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(chat.router, prefix="/api/v1", tags=["chat"])
-app.include_router(recipes.router, prefix="/api/v1", tags=["recipes"])
+app.include_router(chat.router, prefix="/api", tags=["chat"])
+app.include_router(recipes.router, prefix="/api", tags=["recipes"])
